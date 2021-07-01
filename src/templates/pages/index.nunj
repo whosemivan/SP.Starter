@@ -1,60 +1,117 @@
 {% extends "../ext/base.nunj" %}
 
 {% from "../../components/menu/menu.nunj" import menu %}
-{% from "../../components/button/button.nunj" import button %}
-
-{# Пример расширения существующего блока #}
-{# Например можно использовать для добавления уникальных тайтлов для каждой страницы #}
-{# {% block title %}Home / {{ super() }}{% endblock title %} #}
+{% from "../../components/logo/logo.nunj" import logo %}
 
 {% block content %}
 
-	{% include '../../components/header/header.nunj' %}
-
-	<div class="container">
-
-		<div style="padding:20px 0;">
-			{{ button({
-				className: '',
-				children: 'Buy something',
-				chevronRight: true
-			}) }}
+{% include '../../components/header/header.nunj' %}
+<main class="main">
+<section class="ordering-block">
+	<h1 class="ordering-block__title invisible-container">Оформление заказа</h1>
+	<div class="ordering-block__progress">
+		<div class="ordering-block__range">
+			<span class="ordering-block__item">1</span>
+			<span class="ordering-block__item">2</span>
+			<span class="ordering-block__item">3</span>
+			<span class="ordering-block__item">4</span>
 		</div>
-
-		<div style="padding:20px 0;">
-			
-			<h2 style="margin-bottom: 15px;">Пример использования циклов и функции range():</h2>
-			
-			<div class="row">
-				{% for i in range(1, 13)  %}
-					<span>{{ i }}</span>
-				{% endfor %}
-			</div>
-
-		</div>
-
-		<div style="padding:20px 0;">
-
-			<h2 style="margin-bottom: 15px;">Пример с переменными:</h2>
-
-			{% for item in someData %}
-				<div style="margin-bottom: 15px;">
-					<h3>{{ item.title }}</h3>
-					<p>{{ item.text }}</p>
-				</div>
-			{% endfor %}
-
-		</div>
-
-		{# Пример с функциями #}
-		<p style="margin-bottom: 20px;">{{ addAwesome('Это текст для теста функций') }}</p>
-
-		{% if DEVELOP %}
-			<div class="debug" style="margin-bottom: 20px;">
-				<h2 style="margin-bottom: 15px;">Debug:</h2>
-				<p>Эта информация будет выводиться только при DEVELOP = true.</p>
-			</div>
-		{% endif %}
-
 	</div>
+	<div class="billing-information">
+		<h2 class="billing-information__title">Billing Information</h2>
+		<form class="form" method="post">
+			<fieldset class="radio-group">
+				<input id="credit-card" type="radio" name="radio-button" class="radio-group__radio" checked>
+            	<label for="credit-card" class="radio-group__label">Pay with Credit Card</label>
+            	<input id="paypal" type="radio" name="radio-button" class="radio-group__radio">
+            	<label for="paypal" class="radio-group__label"><img src="../../assets/images/paypal.svg" alt="PayPal"></label>
+			</fieldset>
+			<fieldset class="card-info">
+				<p class="card-info__wrapper">
+					<label for="name-of-card" class="card-info__label">Name on card</label>
+              		<input type="text" id="name-of-card" name="name-of-card" placeholder="Placeholder Text" class="card-info__input">
+				</p>
+				<p class="card-info__wrapper">
+					<label for="card-number" class="card-info__label">Card number</label>
+              		<input type="number" id="card-number" name="card-number" class="card-info__input">
+              		<input type="number" name="card-number" class="card-info__input">
+              		<input type="number" name="card-number" class="card-info__input">
+              		<input type="number" name="card-number" class="card-info__input">
+				</p>
+				<p class="card-info__wrapper">
+					<label for="expire-date" class="card-info__label">Expire date</label>
+              		<input type="number" id="expire-date" name="expire-date" class="card-info__input">
+					<label for="cvv-code" class="card-info__label">CVV code</label>
+              		<input type="password" id="cvv-code" name="cvv-code" class="card-info__input">
+              	</p>
+			</fieldset>
+			<fieldset class="checkbox-group">
+              	<input type="checkbox" id="save-inf" name="save-inf" class="checkbox-group__checkbox" checked>
+				<label for="save-inf" class="checkbox-group__label">Save information of this credit card</label>
+              	<input type="checkbox" id="accept" name="accept" class="checkbox-group__checkbox">
+              	<label for="accept" class="checkbox-group__label">I accept the <span>terms and comditions</span> and the <span>Privacy Policies</span></label>
+			</fieldset>
+			<div class="form__buttons">
+				<button class="form__btn form__btn--back" type="button">Back</button>
+				<button class="form__btn" type="submit">Check Out</button>
+			</div>
+		</form>
+	</div>
+</section>
+<section class="basket basket--hidden">
+	<h2 class="basket__title">My basket</h2>
+	<div class="basket-card">
+		<img class="basket-card__image" src="../../assets/images/product1.jpg" width="100" height="100" alt="Товар">
+		<div class="basket-card__wrapper">
+			<p class="basket-card__text">Amet minim mollit non deserunt ullamco est sit</p>
+			<p class="basket-card__container">
+			<button class="basket-card__button">
+				<img src="../../assets/images/minus.svg" alt="Убрать из корзины">
+			</button>
+			<span class="basket-card__count">1</span>
+			<button class="basket-card__button">
+				<img src="../../assets/images/plus.svg" alt="Добавить один такой же товар">
+			</button>
+			<span class="basket-card__price">$ 525</span>
+			</p>
+		</div>
+	</div>
+	<div class="basket-card">
+		<img class="basket-card__image" src="../../assets/images/product2.jpg" width="100" height="100" alt="Товар">
+		<div class="basket-card__wrapper">
+			<p class="basket-card__text">Amet minim mollit non deserunt ullamco est sit</p>
+			<p class="basket-card__container">
+			<button class="basket-card__button">
+				<img src="../../assets/images/minus.svg" alt="Убрать из корзины">
+			</button>
+			<span class="basket-card__count">1</span>
+			<button class="basket-card__button">
+				<img src="../../assets/images/plus.svg" alt="Добавить один такой же товар">
+			</button>
+			<span class="basket-card__price">$ 525</span>
+			</p>
+		</div>
+	</div>
+	<form class="promo-code" method="post">
+		<div class="promo-code__wrapper">
+			<h2 class="promo-code__title">Promo code</h2>
+			<input class="promo-code__input" type="text" placeholder="Placeholder Text">
+			<button class="promo-code__btn" type="submit">Apply</button>
+		</div>
+	</form>
+	<div class="total-price">
+		<dl class="total-price__list">
+            <dt class="total-price__value">Subtotal</dt>
+            <dd class="total-price__field">$1 050</dd>
+            <dt class="total-price__value">Tax</dt>
+            <dd class="total-price__field">$100</dd>
+            <dt class="total-price__value">Shipping</dt>
+            <dd class="total-price__field">$150</dd>
+            <dt class="total-price__value total-price__value--total">Total</dt>
+            <dd class="total-price__field total-price__value--total">$1 300</dd>
+        </dl>
+	</div>
+</section>
+</main>
+
 {% endblock content %}

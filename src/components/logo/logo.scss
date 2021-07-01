@@ -1,0 +1,11 @@
+.logo {
+	min-height: 80px;
+	display: flex;
+}
+
+
+@media (min-width: $desktop-width) {
+	.logo {
+		order: 1;
+	}
+}

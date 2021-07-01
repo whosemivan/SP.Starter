@@ -19,6 +19,7 @@ class ProjectApp {
 	constructor() {
 		this.env = require('./utils/env').default;
 		this.utils = require('./utils/utils').default;
+		this.nav = require('nav.js').default;
 		this.classes = {
 			Signal: require('./classes/Signal').default,
 		};

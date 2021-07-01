@@ -1,5 +1,17 @@
-<div class="header">
-	<div class="container">
-		{{ menu() }}
-	</div>
-</div>
+<header class="header">
+ 	<div class="header__wrapper">
+		{{ logo() }}
+		<div class="header__container">
+			<button class="header__btn header__btn--search">
+				<span class="invisible-container">Поиск...</span>
+			</button>
+		<button class="header__btn header__btn--basket">
+			<span class="invisible-container">Корзина</span>
+		</button>
+		<button class="header__nav-btn invisible-container header__nav-btn--close" type="button">
+			<span class="invisible-container">Открыть меню</span>
+		</button>
+		</div>
+	{{ menu() }}
+ 	</div>
+</header>

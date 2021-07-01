@@ -1,0 +1,5 @@
+{% macro logo() %}
+	<a href="#" class="logo">
+ 		<img src="../../assets/images/logo-tablet.svg" alt="Логотип" class="logo__image">
+	</a>
+{% endmacro %}
